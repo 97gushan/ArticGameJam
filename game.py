@@ -1,4 +1,4 @@
-import pygame, player, ground, varg
+import pygame, player, ground, varg, lo
 
 class Game:
     def __init__(self):
@@ -7,6 +7,7 @@ class Game:
 
         self.ground = [ground.Ground(300,600,500, 50), ground.Ground(600,300, 200, 50)]
         self.varg = varg.Varg(300,520,140, 80)
+        self.lo = lo.Lo(700,520,140, 80)
 
 
     def check_collision(self):
@@ -33,11 +34,13 @@ class Game:
             n.update(self.world_x)
 
         self.varg.update(self.world_x)
+        self.lo.update(self.world_x)
 
 
     def render(self, screen):
         self.player.render(screen)
         self.varg.render(screen)
+        self.lo.render(screen)
 
         for n in self.ground:
             n.render(screen)
