@@ -32,13 +32,13 @@ class Player:
     def gravity(self, dt):
 
         if(not self.is_grounded):
-            self.speed_y += 9.82 / 5000
+            self.speed_y += 9.82 / 2500
             self.ypos += self.speed_y * (1 + dt)
 
     def jump(self, dt):
         if(self.is_grounded):
             self.ypos -= 5
-            self.speed_y = -1
+            self.speed_y = -1.5
 
     def get_rect(self):
         return self.image_rect
