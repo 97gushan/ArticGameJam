@@ -5,12 +5,27 @@ class Game:
         self.world_x = 0
         self.player = player.Player(490,50)
 
-        self.ground = [ground.Ground(300,600,1500, 50), ground.Ground(600,350, 200, 50)]
-        self.varg = [varg.Varg(1000,520,140, 80)]
-        self.jarv = [jarv.Jarv(1400,520, 140, 80)]
-        self.lo = [lo.Lo(700,520,140, 80)]
+        self.boss_position = 1000
+        self.boss_battle = False
+
+        self.ground = [ground.Ground(0,650,2000, 50), ground.Ground(600,450, 200, 50),
+
+                       ground.Ground(self.boss_position+100, 450, 200, 50),
+                       ground.Ground(self.boss_position+700, 450, 200, 50),
+                       ground.Ground(self.boss_position+400, 250, 200, 50)]
+        #self.varg = [varg.Varg(1000,520,140, 80)]
+        #self.jarv = [jarv.Jarv(1400,520, 140, 80)]
+        self.lo = [lo.Lo(1600,520,140, 80)]
+
+        self.boss_battle_ground = []
+
+        self.varg = []
+        self.jarv = []
+        #self.lo = []
 
         self.prevent_movement = 0
+
+
 
     def die(self):
         self.world_x = 0
@@ -37,6 +52,7 @@ class Game:
 
             if(self.player.get_rect()[3].colliderect(n.get_rect())):
                 right_collision = True
+
 
 
         if(roof_collision):
@@ -83,6 +99,7 @@ class Game:
         for n in self.ground:
             n.update(self.world_x)
 
+
         for n in self.varg:
             n.update(self.world_x, dt)
 
@@ -92,9 +109,12 @@ class Game:
         for n in self.jarv:
             n.update(self.world_x, dt)
 
-        if self.player.ypos > 650:
+        if self.player.ypos > 1050:
             self.die()
 
+
+        if(self.world_x >= self.boss_position):
+            self.boss_battle = True
 
 
 
@@ -114,18 +134,25 @@ class Game:
             n.render(screen)
 
 
+
     def input(self, dt):
         """ User input thingys"""
 
         key = pygame.key.get_pressed()
 
         if(key[pygame.K_a]):
-            if(not self.prevent_movement == 1 and self.world_x > - 200):
+            if(self.boss_battle):
+                if(self.player.get_xpos() + self.world_x - 25 > self.boss_position):
+                    self.player.move_left(dt)
+
+            elif(not self.prevent_movement == 1 and self.world_x > - 200):
                 self.world_x -= 0.2 * (1 + dt)
-            #self.player.move_left(dt)
         if(key[pygame.K_d]):
-            if(not self.prevent_movement == 2):
+            if(self.boss_battle):
+                if(self.player.get_xpos() + self.world_x + 25 < self.boss_position + 1000):
+                    self.player.move_right(dt)
+
+            elif(not self.prevent_movement == 2):
                 self.world_x += 0.2 * (1 + dt)
-            #self.player.move_right(dt)
         if(key[pygame.K_w]):
             self.player.jump(dt)
