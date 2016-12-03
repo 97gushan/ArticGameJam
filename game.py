@@ -23,7 +23,7 @@ class Game:
         if(have_collided == 2):
             self.player.set_grounded(True)
         else:
-            self.player.set_grounded(False))
+            self.player.set_grounded(False)
 
     def update(self, dt):
         self.check_collision()
