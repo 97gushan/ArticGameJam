@@ -16,7 +16,7 @@ class Game:
         #self.varg = [varg.Varg(1000,520,140, 80)]
         #self.jarv = [jarv.Jarv(1400,520, 140, 80)]
         #self.lo = [lo.Lo(500,520,140, 80)]
-        self.bjorn = bjorn.Bjorn(1600, 500,140, 80, self.boss_position)
+        self.bjorn = bjorn.Bjorn(1600, 410,140, 80, self.boss_position)
 
         self.boss_battle_ground = []
 

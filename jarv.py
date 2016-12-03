@@ -14,7 +14,7 @@ class Jarv:
         self.world_x = 0
         self.attacking = False
 
-        self.image = pygame.image.load("img/varg.png")
+        self.image = pygame.image.load("img/jarv.png")
         self.image_rect = (self.xpos, self.ypos, self.width, self.height)
 
     def reset(self):

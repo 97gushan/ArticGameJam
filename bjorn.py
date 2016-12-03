@@ -7,14 +7,14 @@ class Bjorn:
         self.xpos = xpos
         self.ypos = ypos
         self.width = width
-        self.height = height
+        self.height = 3*height
 
         self.speed_x = 1
 
         self.world_x = 0
         self.attacking = False
 
-        self.image = pygame.image.load("img/varg.png")
+        self.image = pygame.image.load("img/bjorn.png")
         self.image_rect = (self.xpos, self.ypos, self.width, self.height)
 
         self.bp = bp
