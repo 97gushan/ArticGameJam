@@ -10,7 +10,7 @@ class Player:
         self.speed = 1
         self.speed_y = 1
 
-        self.image = pygame.image.load("img/tmp.png")
+        self.image = pygame.image.load("img/player.png")
         self.image_rect = self.image.get_rect()
         self.upper_box = (self.xpos, self.ypos, 50, 2)
         self.lower_box = (self.xpos, self.ypos+50, 50, 2)
@@ -26,6 +26,8 @@ class Player:
 
     def render(self, screen):
         screen.blit(self.image, self.image_rect)
+        self.image = pygame.transform.scale(self.image,(65, 105))
+
 
         pygame.draw.rect(screen, (0,255,255),self.upper_box, 2)
         pygame.draw.rect(screen, (0,255,255),self.lower_box, 2)
@@ -46,7 +48,7 @@ class Player:
     def gravity(self, dt):
 
         if(not self.is_grounded):
-            self.speed_y += 9.82 / 1500
+            self.speed_y += 9.82 / 750
             self.ypos += self.speed_y * (1 + dt) * 0.3
 
     def jump(self, dt):
