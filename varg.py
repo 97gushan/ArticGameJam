@@ -31,15 +31,15 @@ class Varg:
     def update(self, world_x, dt):
         self.world_x = world_x
 
-        if int(self.xpos) == 300:
+        if int(self.xpos) <= self.startvalues[0] - 200:
             self.bool1 = True
             self.move_right(dt)
 
-        elif int(self.xpos) == 500:
+        elif int(self.xpos) >= self.startvalues[0] + 200:
             self.bool1 = False
             self.move_left(dt)
 
-        elif self.xpos < 500 and self.bool1 == True:
+        elif self.xpos < self.startvalues[0] + 200 and self.bool1 == True:
             self.move_right(dt)
 
         else:
