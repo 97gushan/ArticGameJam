@@ -5,26 +5,48 @@ class Game:
         self.world_x = 0
         self.player = player.Player(490,50)
 
-        self.ground = [ground.Ground(300,600,500, 50), ground.Ground(600,300, 200, 50)]
+        self.ground = [ground.Ground(300,600,500, 50), ground.Ground(600,350, 200, 50)]
         self.varg = varg.Varg(300,520,140, 80)
         self.lo = lo.Lo(700,520,140, 80)
 
+        self.prevent_movement = 0
+
 
     def check_collision(self):
-        have_collided = 0
+        roof_collision = False
+        ground_collision = False
+        left_collision = False
+        right_collision = False
         for n in self.ground:
             if(self.player.get_rect()[0].colliderect(n.get_rect())):
-                have_collided = 1
-            if(self.player.get_rect()[1].colliderect(n.get_rect())):
-                have_collided = 2
+                roof_collision = True
 
-        if(have_collided == 1):
+            if(self.player.get_rect()[1].colliderect(n.get_rect())):
+                ground_collision = True
+
+            if(self.player.get_rect()[2].colliderect(n.get_rect())):
+                left_collision = True
+
+            if(self.player.get_rect()[3].colliderect(n.get_rect())):
+                right_collision = True
+
+
+        if(roof_collision):
             self.player.set_speed(0)
 
-        if(have_collided == 2):
+        if(ground_collision):
             self.player.set_grounded(True)
+            self.player.set_speed(0)
         else:
             self.player.set_grounded(False)
+
+        if(left_collision):
+            self.prevent_movement = 1
+        elif(right_collision):
+            self.prevent_movement = 2
+        else:
+            self.prevent_movement = 0
+
 
     def update(self, dt):
         self.check_collision()
@@ -52,10 +74,12 @@ class Game:
         key = pygame.key.get_pressed()
 
         if(key[pygame.K_a]):
-            self.world_x -= 1
+            if(not self.prevent_movement == 1):
+                self.world_x -= 1
             #self.player.move_left(dt)
         if(key[pygame.K_d]):
-            self.world_x += 1
+            if(not self.prevent_movement == 2):
+                self.world_x += 1
             #self.player.move_right(dt)
         if(key[pygame.K_w]):
             self.player.jump(dt)
