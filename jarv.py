@@ -31,14 +31,14 @@ class Jarv:
 
         screen.blit(self.image, self.image_rect)
 
-    def update(self, world_x):
+    def update(self, world_x, dt):
         self.world_x = world_x
 
         self.xpos -= self.speed_x
 
         if(self.attacking):
 
-            self.speed_x = 2
+            self.speed_x = 1 * (1+dt)
 
     def begin_attack(self):
         self.attacking = True

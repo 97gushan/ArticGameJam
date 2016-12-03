@@ -28,28 +28,28 @@ class Varg:
 
         screen.blit(self.image, self.image_rect)
 
-    def update(self, world_x):
+    def update(self, world_x, dt):
         self.world_x = world_x
 
         if int(self.xpos) == 300:
             self.bool1 = True
-            self.move_right()
+            self.move_right(dt)
 
         elif int(self.xpos) == 500:
             self.bool1 = False
-            self.move_left()
+            self.move_left(dt)
 
         elif self.xpos < 500 and self.bool1 == True:
-            self.move_right()
+            self.move_right(dt)
 
         else:
-            self.move_left()
+            self.move_left(dt)
 
     def get_rect(self):
         return self.image_rect
 
-    def move_right(self):
-        self.xpos += self.speed
+    def move_right(self, dt):
+        self.xpos += self.speed * (1 + dt)
 
-    def move_left(self):
-        self.xpos -= self.speed
+    def move_left(self, dt):
+        self.xpos -= self.speed * (1 + dt)

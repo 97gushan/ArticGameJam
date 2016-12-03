@@ -28,15 +28,15 @@ class Lo:
         self.width = self.startvalues[2]
         self.height = self.startvalues[3]
 
-    def update(self, world_x):
+    def update(self, world_x, dt):
         self.world_x = world_x
-        if int(self.ypos) == 520 or int(self.ypos) == 519:
+        if int(self.ypos) <= 520 and int(self.ypos) >= 518:
             self.ypos -= 5
-            self.speed = -1.5
+            self.speed = -1
 
         else:
-            self.speed += 9.82 / 2500
-            self.ypos += self.speed
+            self.speed += 9.82 / 1500
+            self.ypos += self.speed * (1 + dt) * 0.3
 
 
     def get_rect(self):
