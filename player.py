@@ -23,6 +23,7 @@ class Player:
     def reset(self):
         self.xpos = self.startvalues[0]
         self.ypos = self.startvalues[1]
+        self.speed_y = 0
 
     def render(self, screen):
         screen.blit(self.image, self.image_rect)
@@ -42,8 +43,8 @@ class Player:
 
         self.upper_box = (self.xpos-30, self.ypos-52, 62, 6)
         self.lower_box = (self.xpos-30, self.ypos+54, 62, 6)
-        self.left_box = (self.xpos-35, self.ypos -52, 6, 104)
-        self.right_box = (self.xpos + 33, self.ypos - 52, 6, 106)
+        self.left_box = (self.xpos-40, self.ypos -52, 6, 104)
+        self.right_box = (self.xpos + 37, self.ypos - 52, 6, 106)
 
     def gravity(self, dt):
 

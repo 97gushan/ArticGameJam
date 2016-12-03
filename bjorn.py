@@ -3,7 +3,7 @@ import pygame
 class Bjorn:
 
     def __init__(self, xpos, ypos, width, height, bp):
-        self.startvalues = [xpos,ypos,width,height]
+        self.startvalues = [xpos,ypos,width,3*height]
         self.xpos = xpos
         self.ypos = ypos
         self.width = width

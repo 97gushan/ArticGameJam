@@ -3,7 +3,7 @@ import pygame, player, ground, varg, lo, jarv, bjorn
 class Game:
     def __init__(self):
         self.world_x = 0
-        self.player = player.Player(490,50)
+        self.player = player.Player(490,450)
 
         self.boss_position = 1000
         self.boss_battle = False
@@ -19,6 +19,7 @@ class Game:
         self.bjorn = bjorn.Bjorn(1600, 410,140, 80, self.boss_position)
 
         self.boss_battle_ground = []
+        self.bear_health = 3
 
         self.varg = []
         self.jarv = []
@@ -26,7 +27,7 @@ class Game:
 
         self.prevent_movement = 0
 
-        
+
 
 
 
@@ -37,8 +38,11 @@ class Game:
             n.reset()
 
         self.player.reset()
+        self.boss_battle = False
+        self.bjorn.reset()
+        self.bear_health = 3
 
-    def check_collision(self):
+    def check_collision(self,dt):
         roof_collision = False
         ground_collision = False
         left_collision = False
@@ -99,8 +103,24 @@ class Game:
                     self.die()
 
 
+        # bear collisions
+
+        if self.player.get_rect()[1].colliderect(self.bjorn.get_rect()):
+            self.player.set_grounded(True)
+            self.player.jump(dt)
+            self.player.set_grounded(False)
+            self.bear_health -= 1
+
+            if(self.bear_health == 0):
+                print("YOU WIN!!!")
+
+        elif(self.player.get_rect()[0].colliderect(self.bjorn.get_rect()) or
+            self.player.get_rect()[2].colliderect(self.bjorn.get_rect()) or
+            self.player.get_rect()[3].colliderect(self.bjorn.get_rect())):
+            self.die()
+
     def update(self, dt):
-        self.check_collision()
+        self.check_collision(dt)
         self.player.update(dt)
 
         for n in self.ground:
