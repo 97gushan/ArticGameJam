@@ -112,7 +112,7 @@ class Game:
             self.bear_health -= 1
 
             if(self.bear_health == 0):
-                print("YOU WIN!!!")
+                print("CONGRATIOPSNAIONS!!!!")
 
         elif(self.player.get_rect()[0].colliderect(self.bjorn.get_rect()) or
             self.player.get_rect()[2].colliderect(self.bjorn.get_rect()) or
