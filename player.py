@@ -48,7 +48,7 @@ class Player:
     def gravity(self, dt):
 
         if(not self.is_grounded):
-            self.speed_y += 9.82 / 750
+            self.speed_y += 9.82 / 7500 * (1+dt)
             self.ypos += self.speed_y * (1 + dt) * 0.3
 
     def jump(self, dt):
