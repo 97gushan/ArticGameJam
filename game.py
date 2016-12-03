@@ -85,7 +85,7 @@ class Game:
         key = pygame.key.get_pressed()
 
         if(key[pygame.K_a]):
-            if(not self.prevent_movement == 1 and self.world_x > 0):
+            if(not self.prevent_movement == 1 and self.world_x > - 200):
                 self.world_x -= 0.2 * (1 + dt)
             #self.player.move_left(dt)
         if(key[pygame.K_d]):

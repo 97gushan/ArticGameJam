@@ -49,6 +49,12 @@ class Player:
             self.ypos -= 5
             self.speed_y = -1.5
 
+    def move_left(self, dt):
+        self.xpos -= 0.2 * (1 + dt)
+
+    def move_right(self, dt):
+        self.xpos += 0.2 * (1 + dt)
+
     def get_rect(self):
         return pygame.Rect(self.upper_box), pygame.Rect(self.lower_box), pygame.Rect(self.left_box), pygame.Rect(self.right_box)
 
