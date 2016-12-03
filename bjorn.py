@@ -9,7 +9,7 @@ class Bjorn:
         self.width = width
         self.height = 3*height
 
-        self.speed_x = 1
+        self.speed_x = 0.3
 
         self.world_x = 0
         self.attacking = False
@@ -27,7 +27,7 @@ class Bjorn:
         self.width = self.startvalues[2]
         self.height = self.startvalues[3]
         self.attacking = False
-        self.speed_x = 1
+        self.speed_x = 0.3
 
     def render(self, screen):
         self.image = pygame.transform.scale(self.image,(self.width, self.height))

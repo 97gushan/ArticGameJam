@@ -26,6 +26,8 @@ class Game:
 
         self.prevent_movement = 0
 
+        
+
 
 
     def die(self):
