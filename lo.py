@@ -23,7 +23,6 @@ class Lo:
 
     def update(self, world_x):
         self.world_x = world_x
-        print(int(self.ypos))
         if int(self.ypos) == 520 or int(self.ypos) == 519:
             self.ypos -= 5
             self.speed = -1.5

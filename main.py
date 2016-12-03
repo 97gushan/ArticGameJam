@@ -15,9 +15,14 @@ game = game.Game()
 delta_time = 0
 clock = pygame.time.Clock()
 
-while(1):
-    delta_time = clock.tick(400)/1000
+t = pygame.Surface((1000,700))
+t.set_alpha(100)
+t.fill((0,0,0))
 
+
+while(1):
+    delta_time = float(clock.tick(400))
+    print(delta_time)
 
     for event in pygame.event.get():
         if(event.type == pygame.QUIT):
@@ -31,5 +36,7 @@ while(1):
     screen.fill(black)
 
     game.render(screen)
+
+    screen.blit(t, (0,0))
 
     pygame.display.flip()

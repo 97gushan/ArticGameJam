@@ -9,7 +9,7 @@ class Game:
         self.ground = [ground.Ground(300,600,1500, 50), ground.Ground(600,350, 200, 50)]
         self.varg = varg.Varg(10000,520,140, 80)
         self.jarv = jarv.Jarv(1400,520, 140, 80)
-        self.ground = [ground.Ground(300,600,500, 50), ground.Ground(600,350, 200, 50)]
+        self.ground = [ground.Ground(300,600,1500, 50), ground.Ground(600,350, 200, 50)]
         self.varg = varg.Varg(300,520,140, 80)
         self.lo = lo.Lo(700,520,140, 80)
 
