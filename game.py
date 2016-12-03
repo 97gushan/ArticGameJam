@@ -1,4 +1,4 @@
-import pygame, player, ground, varg, lo, jarv
+import pygame, player, ground, varg, lo, jarv, bjorn
 
 class Game:
     def __init__(self):
@@ -15,13 +15,14 @@ class Game:
                        ground.Ground(self.boss_position+400, 250, 200, 50)]
         #self.varg = [varg.Varg(1000,520,140, 80)]
         #self.jarv = [jarv.Jarv(1400,520, 140, 80)]
-        self.lo = [lo.Lo(1600,520,140, 80)]
+        #self.lo = [lo.Lo(500,520,140, 80)]
+        self.bjorn = bjorn.Bjorn(1600, 500,140, 80, self.boss_position)
 
         self.boss_battle_ground = []
 
         self.varg = []
         self.jarv = []
-        #self.lo = []
+        self.lo = []
 
         self.prevent_movement = 0
 
@@ -77,6 +78,9 @@ class Game:
                 n.begin_attack()
 
 
+        if(self.player.get_xpos() + self.world_x >= self.bjorn.attack_pos()):
+            self.bjorn.begin_attack()
+
         # Animal collision-----------------------------------
         for n in self.player.get_rect():
             for m in self.varg:
@@ -109,6 +113,8 @@ class Game:
         for n in self.jarv:
             n.update(self.world_x, dt)
 
+        self.bjorn.update(self.world_x,dt)
+
         if self.player.ypos > 1050:
             self.die()
 
@@ -133,6 +139,7 @@ class Game:
         for n in self.ground:
             n.render(screen)
 
+        self.bjorn.render(screen)
 
 
     def input(self, dt):
