@@ -63,10 +63,10 @@ class Game:
         for n in self.ground:
             n.update(self.world_x)
 
-        self.varg.update(self.world_x)
-        self.lo.update(self.world_x)
+        self.varg.update(self.world_x, dt)
+        self.lo.update(self.world_x, dt)
 
-        self.jarv.update(self.world_x)
+        self.jarv.update(self.world_x, dt)
 
 
     def render(self, screen):
@@ -86,11 +86,11 @@ class Game:
 
         if(key[pygame.K_a]):
             if(not self.prevent_movement == 1 and self.world_x > 0):
-                self.world_x -= 1
+                self.world_x -= 0.2 * (1 + dt)
             #self.player.move_left(dt)
         if(key[pygame.K_d]):
             if(not self.prevent_movement == 2):
-                self.world_x += 1
+                self.world_x += 0.2 * (1 + dt)
             #self.player.move_right(dt)
         if(key[pygame.K_w]):
             self.player.jump(dt)
