@@ -5,7 +5,7 @@ class Game:
         self.world_x = 0
         self.player = player.Player(490,50)
 
-        self.ground = [ground.Ground(300,600,500, 50), ground.Ground(600,300, 200, 50)]
+        self.ground = [ground.Ground(300,600,500, 50), ground.Ground(600,350, 200, 50)]
         self.varg = varg.Varg(300,520,140, 80)
 
         self.prevent_movement = 0
@@ -35,6 +35,7 @@ class Game:
 
         if(ground_collision):
             self.player.set_grounded(True)
+            self.player.set_speed(0)
         else:
             self.player.set_grounded(False)
 
