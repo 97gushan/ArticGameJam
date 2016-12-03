@@ -57,3 +57,6 @@ class Player:
 
     def set_speed(self, speed):
         self.speed_y = speed
+
+    def get_xpos(self):
+        return self.xpos

@@ -1,10 +1,14 @@
 import pygame, player, ground, varg, lo
+import pygame, player, ground, varg, jarv
 
 class Game:
     def __init__(self):
         self.world_x = 0
         self.player = player.Player(490,50)
 
+        self.ground = [ground.Ground(300,600,1500, 50), ground.Ground(600,350, 200, 50)]
+        self.varg = varg.Varg(10000,520,140, 80)
+        self.jarv = jarv.Jarv(1400,520, 140, 80)
         self.ground = [ground.Ground(300,600,500, 50), ground.Ground(600,350, 200, 50)]
         self.varg = varg.Varg(300,520,140, 80)
         self.lo = lo.Lo(700,520,140, 80)
@@ -47,6 +51,10 @@ class Game:
         else:
             self.prevent_movement = 0
 
+        # Kolla om spelaren
+        if(self.player.get_xpos() + self.world_x >= self.jarv.attack_pos()):
+            self.jarv.begin_attack()
+
 
     def update(self, dt):
         self.check_collision()
@@ -58,11 +66,14 @@ class Game:
         self.varg.update(self.world_x)
         self.lo.update(self.world_x)
 
+        self.jarv.update(self.world_x)
+
 
     def render(self, screen):
         self.player.render(screen)
         self.varg.render(screen)
         self.lo.render(screen)
+        self.jarv.render(screen)
 
         for n in self.ground:
             n.render(screen)
