@@ -1,4 +1,4 @@
-import pygame, player, ground
+import pygame, player, ground, varg
 
 class Game:
     def __init__(self):
@@ -6,6 +6,8 @@ class Game:
         self.player = player.Player(490,50)
 
         self.ground = ground.Ground(300,600,500, 50, )
+        self.varg = varg.Varg(300,520,140, 80)
+
 
     def check_collision(self):
         if(self.player.get_rect().colliderect(self.ground.get_rect())):
@@ -17,11 +19,13 @@ class Game:
         self.check_collision()
         self.player.update(dt)
         self.ground.update(self.world_x)
+        self.varg.update(self.world_x)
 
 
     def render(self, screen):
         self.player.render(screen)
         self.ground.render(screen)
+        self.varg.render(screen)
 
 
     def input(self, dt):

@@ -8,7 +8,7 @@ size = width, height = 1000, 700
 
 screen = pygame.display.set_mode(size)
 
-black = 0,0,0
+black = 255,255,0
 
 game = game.Game()
 
