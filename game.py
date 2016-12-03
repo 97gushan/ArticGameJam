@@ -36,7 +36,7 @@ class Game:
 
 
         if(roof_collision):
-            self.player.set_speed(0)
+            self.player.set_speed(0.1)
 
         if(ground_collision):
             self.player.set_grounded(True)
@@ -85,7 +85,7 @@ class Game:
         key = pygame.key.get_pressed()
 
         if(key[pygame.K_a]):
-            if(not self.prevent_movement == 1):
+            if(not self.prevent_movement == 1 and self.world_x > 0):
                 self.world_x -= 1
             #self.player.move_left(dt)
         if(key[pygame.K_d]):
