@@ -19,6 +19,8 @@ t = pygame.Surface((1000,700))
 t.set_alpha(100)
 t.fill((0,0,0))
 
+image = pygame.image.load("img/miljo.png")
+image = pygame.transform.scale(image,(width, height))
 
 while(1):
     delta_time = float(clock.tick(400))
@@ -32,7 +34,8 @@ while(1):
 
     game.update(delta_time)
 
-    screen.fill(black)
+    screen.blit(image,(0,0,width,height))
+
 
     game.render(screen)
 
