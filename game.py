@@ -6,15 +6,18 @@ class Game:
         self.player = player.Player(490,50)
 
         self.ground = [ground.Ground(300,600,1500, 50), ground.Ground(600,350, 200, 50)]
-        self.varg = varg.Varg(10000,520,140, 80)
-        self.jarv = jarv.Jarv(1400,520, 140, 80)
-        self.lo = lo.Lo(700,520,140, 80)
+        self.varg = [varg.Varg(1000,520,140, 80)]
+        self.jarv = [jarv.Jarv(1400,520, 140, 80)]
+        self.lo = [lo.Lo(700,520,140, 80)]
 
         self.prevent_movement = 0
 
     def die(self):
         self.world_x = 0
-        self.jarv.reset()
+
+        for n in self.jarv:
+            n.reset()
+
         self.player.reset()
 
     def check_collision(self):
@@ -53,8 +56,24 @@ class Game:
             self.prevent_movement = 0
 
         # Kolla om spelaren
-        if(self.player.get_xpos() + self.world_x >= self.jarv.attack_pos()):
-            self.jarv.begin_attack()
+        for n in self.jarv:
+            if(self.player.get_xpos() + self.world_x >= n.attack_pos()):
+                n.begin_attack()
+
+
+        # Animal collision-----------------------------------
+        for n in self.player.get_rect():
+            for m in self.varg:
+                if(n.colliderect(m.get_rect())):
+                    self.die()
+
+            for m in self.lo:
+                if(n.colliderect(m.get_rect())):
+                    self.die()
+
+            for m in self.jarv:
+                if(n.colliderect(m.get_rect())):
+                    self.die()
 
 
     def update(self, dt):
@@ -64,10 +83,14 @@ class Game:
         for n in self.ground:
             n.update(self.world_x)
 
-        self.varg.update(self.world_x, dt)
-        self.lo.update(self.world_x, dt)
+        for n in self.varg:
+            n.update(self.world_x, dt)
 
-        self.jarv.update(self.world_x, dt)
+        for n in self.lo:
+            n.update(self.world_x, dt)
+
+        for n in self.jarv:
+            n.update(self.world_x, dt)
 
         if self.player.ypos > 650:
             self.die()
@@ -77,9 +100,15 @@ class Game:
 
     def render(self, screen):
         self.player.render(screen)
-        self.varg.render(screen)
-        self.lo.render(screen)
-        self.jarv.render(screen)
+
+        for n in self.varg:
+            n.render(screen)
+
+        for n in self.lo:
+            n.render(screen)
+
+        for n in self.jarv:
+            n.render(screen)
 
         for n in self.ground:
             n.render(screen)
