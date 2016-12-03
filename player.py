@@ -12,10 +12,10 @@ class Player:
 
         self.image = pygame.image.load("img/player.png")
         self.image_rect = self.image.get_rect()
-        self.upper_box = (self.xpos, self.ypos, 50, 2)
-        self.lower_box = (self.xpos, self.ypos+50, 50, 2)
-        self.left_box = (self.xpos- 27, self.ypos -20, 2, 44)
-        self.right_box = (self.xpos + 23, self.ypos - 20, 2, 44)
+        self.upper_box = (self.xpos, self.ypos, 64, 2)
+        self.lower_box = (self.xpos, self.ypos+100, 64, 2)
+        self.left_box = (self.xpos- 32, self.ypos -52, 2, 104)
+        self.right_box = (self.xpos + 32, self.ypos - 52, 2, 104)
 
         self.is_grounded = False
         self.tmp = 0
@@ -26,7 +26,7 @@ class Player:
 
     def render(self, screen):
         screen.blit(self.image, self.image_rect)
-        self.image = pygame.transform.scale(self.image,(65, 105))
+        self.image = pygame.transform.scale(self.image,(64, 104))
 
 
         pygame.draw.rect(screen, (0,255,255),self.upper_box, 2)
@@ -38,12 +38,12 @@ class Player:
     def update(self, dt):
         self.gravity(dt)
         #print(self.speed_y)
-        self.image_rect.center = (self.xpos,self.ypos)
+        self.image_rect.center = (self.xpos-24,self.ypos-36)
 
-        self.upper_box = (self.xpos-25, self.ypos-25, 50, 2)
-        self.lower_box = (self.xpos-25, self.ypos+25, 50, 2)
-        self.left_box = (self.xpos- 29, self.ypos -25, 4, 48)
-        self.right_box = (self.xpos + 25, self.ypos -25, 4, 48)
+        self.upper_box = (self.xpos-30, self.ypos-52, 62, 6)
+        self.lower_box = (self.xpos-30, self.ypos+54, 62, 6)
+        self.left_box = (self.xpos-35, self.ypos -52, 6, 104)
+        self.right_box = (self.xpos + 33, self.ypos - 52, 6, 106)
 
     def gravity(self, dt):
 

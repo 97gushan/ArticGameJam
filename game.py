@@ -41,6 +41,7 @@ class Game:
         ground_collision = False
         left_collision = False
         right_collision = False
+
         for n in self.ground:
             if(self.player.get_rect()[0].colliderect(n.get_rect())):
                 roof_collision = True
@@ -149,14 +150,14 @@ class Game:
 
         if(key[pygame.K_a]):
             if(self.boss_battle):
-                if(self.player.get_xpos() + self.world_x - 25 > self.boss_position):
+                if(not self.prevent_movement == 1 and self.player.get_xpos() + self.world_x - 25 > self.boss_position):
                     self.player.move_left(dt)
 
             elif(not self.prevent_movement == 1 and self.world_x > - 200):
                 self.world_x -= 0.2 * (1 + dt)
         if(key[pygame.K_d]):
             if(self.boss_battle):
-                if(self.player.get_xpos() + self.world_x + 25 < self.boss_position + 1000):
+                if(not self.prevent_movement == 2 and self.player.get_xpos() + self.world_x + 25 < self.boss_position + 1000):
                     self.player.move_right(dt)
 
             elif(not self.prevent_movement == 2):
