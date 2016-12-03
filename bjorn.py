@@ -10,6 +10,7 @@ class Bjorn:
         self.height = 3*height
 
         self.speed_x = 0.3
+        self.speed_y = 1
 
         self.world_x = 0
         self.attacking = False
@@ -53,6 +54,14 @@ class Bjorn:
 
             else:
                 self.xpos -= self.speed_x * (1+dt)
+
+
+            if(self.ypos >= self.startvalues[1]):
+                self.speed_y = -1
+                self.ypos -= 20
+            else:
+                self.speed_y += 9.82 / 7500 * (1+dt)
+                self.ypos += self.speed_y * (1 + dt) * 0.3
 
         """    ------------------------------------------------
 
