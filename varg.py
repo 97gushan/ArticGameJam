@@ -7,6 +7,8 @@ class Varg:
         self.ypos = ypos
         self.width = width
         self.height = height
+        self.speed = 0.1
+        self.bool1 = True
 
         self.world_x = 0
 
@@ -22,5 +24,25 @@ class Varg:
     def update(self, world_x):
         self.world_x = world_x
 
+        if int(self.xpos) == 300:
+            self.bool1 = True
+            self.move_right()
+
+        elif int(self.xpos) == 500:
+            self.bool1 = False
+            self.move_left()
+
+        elif self.xpos < 500 and self.bool1 == True:
+            self.move_right()
+
+        else:
+            self.move_left()
+
     def get_rect(self):
         return self.image_rect
+
+    def move_right(self):
+        self.xpos += self.speed
+
+    def move_left(self):
+        self.xpos -= self.speed
