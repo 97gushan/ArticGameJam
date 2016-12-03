@@ -22,7 +22,6 @@ t.fill((0,0,0))
 
 while(1):
     delta_time = float(clock.tick(400))
-    print(delta_time)
 
     for event in pygame.event.get():
         if(event.type == pygame.QUIT):

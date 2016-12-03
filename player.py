@@ -3,6 +3,7 @@ import pygame
 class Player:
 
     def __init__(self, xpos, ypos):
+        self.startvalues = [xpos,ypos]
         self.xpos = xpos
         self.ypos = ypos
 
@@ -18,6 +19,10 @@ class Player:
 
         self.is_grounded = False
         self.tmp = 0
+
+    def reset(self):
+        self.xpos = self.startvalues[0]
+        self.ypos = self.startvalues[1]
 
     def render(self, screen):
         screen.blit(self.image, self.image_rect)

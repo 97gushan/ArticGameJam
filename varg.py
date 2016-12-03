@@ -3,6 +3,7 @@ import pygame
 class Varg:
 
     def __init__(self, xpos, ypos, width, height):
+        self.startvalues = [xpos,ypos,width,height]
         self.xpos = xpos
         self.ypos = ypos
         self.width = width
@@ -14,6 +15,12 @@ class Varg:
 
         self.image = pygame.image.load("img/varg.png")
         self.image_rect = (self.xpos, self.ypos, self.width, self.height)
+
+    def reset(self):
+        self.xpos = self.startvalues[0]
+        self.ypos = self.startvalues[1]
+        self.width = self.startvalues[2]
+        self.height = self.startvalues[3]
 
     def render(self, screen):
         self.image = pygame.transform.scale(self.image,(self.width, self.height))

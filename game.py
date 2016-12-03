@@ -1,5 +1,4 @@
-import pygame, player, ground, varg, lo
-import pygame, player, ground, varg, jarv
+import pygame, player, ground, varg, lo, jarv
 
 class Game:
     def __init__(self):
@@ -9,12 +8,14 @@ class Game:
         self.ground = [ground.Ground(300,600,1500, 50), ground.Ground(600,350, 200, 50)]
         self.varg = varg.Varg(10000,520,140, 80)
         self.jarv = jarv.Jarv(1400,520, 140, 80)
-        self.ground = [ground.Ground(300,600,1500, 50), ground.Ground(600,350, 200, 50)]
-        self.varg = varg.Varg(300,520,140, 80)
         self.lo = lo.Lo(700,520,140, 80)
 
         self.prevent_movement = 0
 
+    def die(self):
+        self.world_x = 0
+        self.jarv.reset()
+        self.player.reset()
 
     def check_collision(self):
         roof_collision = False
@@ -67,6 +68,11 @@ class Game:
         self.lo.update(self.world_x)
 
         self.jarv.update(self.world_x)
+
+        if self.player.ypos > 650:
+            self.die()
+
+
 
 
     def render(self, screen):

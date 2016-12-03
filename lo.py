@@ -3,6 +3,7 @@ import pygame
 class Lo:
 
     def __init__(self, xpos, ypos, width, height):
+        self.startvalues = [xpos,ypos,width,height]
         self.xpos = xpos
         self.ypos = ypos
         self.width = width
@@ -20,6 +21,12 @@ class Lo:
         self.image_rect= (self.xpos - self.world_x, self.ypos, self.width, self.height)
 
         screen.blit(self.image, self.image_rect)
+
+    def reset(self):
+        self.xpos = self.startvalues[0]
+        self.ypos = self.startvalues[1]
+        self.width = self.startvalues[2]
+        self.height = self.startvalues[3]
 
     def update(self, world_x):
         self.world_x = world_x
