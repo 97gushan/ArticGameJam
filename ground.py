@@ -15,7 +15,7 @@ class Ground:
 
     def render(self, screen):
         self.image = pygame.transform.scale(self.image,(self.width, self.height))
-        self.image_rect= (self.xpos - self.world_x, self.ypos, self.width, self.height)
+        self.image_rect = (self.xpos - self.world_x, self.ypos, self.width, self.height)
 
         screen.blit(self.image, self.image_rect)
 
