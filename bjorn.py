@@ -45,11 +45,11 @@ class Bjorn:
                 self.move_right = True
                 self.xpos += self.speed_x * (1+dt)
 
-            elif(self.xpos >= self.bp+1000-self.width):
+            elif(self.xpos >= self.bp+1366-self.width):
                 self.xpos -= self.speed_x * (1+dt)
                 self.move_right = False
 
-            elif self.xpos <= self.bp+1000 -self.width and self.move_right == True:
+            elif self.xpos <= self.bp+1366 -self.width and self.move_right == True:
                 self.xpos += self.speed_x * (1+dt)
 
             else:
@@ -85,7 +85,7 @@ class Bjorn:
         self.attacking = True
 
     def attack_pos(self):
-        return self.bp+400
+        return self.bp+600
 
     def get_rect(self):
         return self.image_rect
