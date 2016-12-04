@@ -10,7 +10,7 @@ class Ground:
 
         self.world_x = 0
 
-        self.image = pygame.image.load("img/test.png")
+        self.image = pygame.image.load("img/ledge.png")
         self.image_rect = (self.xpos, self.ypos, self.width, self.height)
 
     def render(self, screen):
