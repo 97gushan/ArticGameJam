@@ -49,8 +49,8 @@ class Player:
     def gravity(self, dt):
 
         if(not self.is_grounded):
-            self.speed_y += 9.82 / 5500 * (1+dt)
-            self.ypos += self.speed_y * (1 + dt) * 0.35
+            self.speed_y += 9.82 / 3000 * (1+dt)
+            self.ypos += self.speed_y * (1 + dt) * 0.7
 
     def jump(self, dt):
         if(self.is_grounded):
@@ -58,10 +58,10 @@ class Player:
             self.speed_y = -1.5
 
     def move_left(self, dt):
-        self.xpos -= 0.2 * (1 + dt)
+        self.xpos -= self.speed * (1 + dt)
 
     def move_right(self, dt):
-        self.xpos += 0.2 * (1 + dt)
+        self.xpos += self.speed * (1 + dt)
 
     def get_rect(self):
         return pygame.Rect(self.upper_box), pygame.Rect(self.lower_box), pygame.Rect(self.left_box), pygame.Rect(self.right_box)

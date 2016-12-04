@@ -1,30 +1,49 @@
-import pygame, player, ground, varg, lo, jarv, bjorn, snow
+import pygame, player, ground, varg, lo, jarv, bjorn#, #snow
 from time import clock
 
 class Game:
     def __init__(self):
         self.world_x = 0
-        self.player = player.Player(490,450)
+        self.player = player.Player(500,590)
 
-        self.boss_position = 1000
+        self.boss_position = 10000
         self.boss_battle = False
 
-        self.ground = [ground.Ground(0,650,2000, 50), ground.Ground(600,450, 200, 50),
+        self.ground = [
+        #bottom:
 
+
+        #flying
+        ground.Ground(200,450, 200, 50),
+        ground.Ground(400,250, 200, 50),
+        ground.Ground(800,450, 200, 50),
+        ground.Ground(200*11-20,500, 200, 50),
+
+                    #bossplatforms
                        ground.Ground(self.boss_position+100, 450, 200, 50),
                        ground.Ground(self.boss_position+700, 450, 200, 50),
                        ground.Ground(self.boss_position+400, 250, 200, 50)]
-        #self.varg = [varg.Varg(1000,520,140, 80)]
+
+        for n in range(0,100):
+            self.ground.append(ground.Ground(200*n,650,200, 50))
+
+        self.ground.pop(len(self.ground)-96)
+        self.ground.pop(len(self.ground)-95)
+        self.ground.pop(len(self.ground)-91)
+        self.ground.pop(len(self.ground)-90)
+        self.ground.pop(len(self.ground)-89)
+
+
         #self.jarv = [jarv.Jarv(1400,520, 140, 80)]
-        #self.lo = [lo.Lo(500,520,140, 80)]
-        self.bjorn = bjorn.Bjorn(1600, 410,140, 80, self.boss_position)
+        self.lo = [lo.Lo(600,580,140, 80)]
+        self.bjorn = bjorn.Bjorn(16000, 410,140, 80, self.boss_position)
 
         self.boss_battle_ground = []
         self.bear_health = 3
 
-        self.varg = []
+        self.varg = [varg.Varg(1400,580,140, 80)]
         self.jarv = []
-        self.lo = []
+
 
         self.prevent_movement = 0
 
@@ -34,18 +53,23 @@ class Game:
 
         self.hit_time = 0
         self.current_time = 0
+        self.world_speed = 0.3
 
-        self.snow = snow.Snow()
+        #self.snow = snow.Snow()
 
 
 
     def die(self):
-        self.world_x = 0
+        #self.world_x = 0
 
         for n in self.jarv:
             n.reset()
+        for n in self.lo:
+            n.reset()
+        for n in self.varg:
+            n.reset()
 
-        self.player.reset()
+        #self.player.reset()
         self.boss_battle = False
         self.bjorn.reset()
         self.bear_health = 3
@@ -156,9 +180,9 @@ class Game:
         if(self.world_x >= self.boss_position):
             self.boss_battle = True
 
-        self.snow.update(dt)
+        #self.snow.update(dt)
 
-        
+
     def render(self, screen):
         self.player.render(screen)
 
@@ -179,7 +203,7 @@ class Game:
         if(self.victory):
             screen.blit(self.victory_img, self.victory_rect)
 
-        self.snow.render(screen)
+        #self.snow.render(screen)
     def input(self, dt):
         """ User input thingys"""
 
@@ -190,14 +214,14 @@ class Game:
                 if(not self.prevent_movement == 1 and self.player.get_xpos() + self.world_x - 25 > self.boss_position):
                     self.player.move_left(dt)
 
-            elif(not self.prevent_movement == 1 and self.world_x > - 200):
-                self.world_x -= 0.2 * (1 + dt)
+            elif(not self.prevent_movement == 1 and self.world_x > - 400):
+                self.world_x -= self.world_speed * (1 + dt)
         if(key[pygame.K_d]):
             if(self.boss_battle):
                 if(not self.prevent_movement == 2 and self.player.get_xpos() + self.world_x + 25 < self.boss_position + 1000):
                     self.player.move_right(dt)
 
             elif(not self.prevent_movement == 2):
-                self.world_x += 0.2 * (1 + dt)
+                self.world_x += self.world_speed * (1 + dt)
         if(key[pygame.K_w]):
             self.player.jump(dt)
