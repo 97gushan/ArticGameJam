@@ -89,6 +89,8 @@ class Game:
         self.bjorn.reset()
         self.bear_health = 3
 
+        self.victory = False
+
     def check_collision(self,dt):
         roof_collision = False
         ground_collision = False
@@ -223,7 +225,8 @@ class Game:
         if(self.victory):
             screen.blit(self.victory_img, self.victory_rect)
 
-        self.snow.render(screen)
+        #self.snow.render(screen)
+
     def input(self, dt):
         """ User input thingys"""
 
@@ -236,6 +239,8 @@ class Game:
 
             elif(not self.prevent_movement == 1 and self.world_x > - 400):
                 self.world_x -= self.world_speed * (1 + dt)
+
+            self.player.set_moving(-1)
         if(key[pygame.K_d]):
             if(self.boss_battle):
                 if(not self.prevent_movement == 2 and self.player.get_xpos() + self.world_x + 25 < self.boss_position + 1000):
@@ -243,5 +248,11 @@ class Game:
 
             elif(not self.prevent_movement == 2):
                 self.world_x += self.world_speed * (1 + dt)
+
+            self.player.set_moving(1)
+
         if(key[pygame.K_w]):
             self.player.jump(dt)
+
+        if(not key[pygame.K_d] and not key[pygame.K_a]):
+            self.player.set_moving(0)
