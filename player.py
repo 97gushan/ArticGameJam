@@ -7,7 +7,7 @@ class Player:
         self.xpos = xpos
         self.ypos = ypos
 
-        self.speed = 1
+        self.speed = 0.3
         self.speed_y = 1
 
         self.image = pygame.image.load("img/player.png")

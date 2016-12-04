@@ -1,9 +1,9 @@
-import pygame, player, ground, varg, lo, jarv, bjorn#, #snow
+import pygame, player, ground, varg, lo, jarv, bjorn, snow
 from time import clock
 
 class Game:
     def __init__(self):
-        self.world_x = 0
+        self.world_x = 5500
         self.player = player.Player(500,590)
 
         self.boss_position = 10000
@@ -19,6 +19,12 @@ class Game:
         ground.Ground(800,450, 200, 50),
         ground.Ground(200*11-150,500, 200, 50),
         ground.Ground(4000,450, 200, 50),
+        ground.Ground(4400,350, 200, 50),
+        ground.Ground(4600,550, 200, 50),
+        ground.Ground(5000,350, 200, 50),
+        ground.Ground(5500,600, 200, 50),
+        ground.Ground(7600,450, 200, 50),
+        ground.Ground(8200,380, 200, 50),
 
                     #bossplatforms
                        ground.Ground(self.boss_position+100, 450, 200, 50),
@@ -33,17 +39,25 @@ class Game:
         self.ground.pop(len(self.ground)-91)
         self.ground.pop(len(self.ground)-90)
         self.ground.pop(len(self.ground)-89)
+        for n in range(10):
+            self.ground.pop(len(self.ground)-(80-n))
+        self.ground.pop(len(self.ground)-68)
 
 
 
-        self.lo = [lo.Lo(600,580,140, 80)]
-        self.bjorn = bjorn.Bjorn(16000, 410,140, 80, self.boss_position)
+
+
+
+
+
+        self.lo = [lo.Lo(600,580,140, 80),lo.Lo(7200,580,140, 80)]
+        self.bjorn = bjorn.Bjorn(11000, 410,140, 80, self.boss_position)
 
         self.boss_battle_ground = []
         self.bear_health = 3
 
-        self.varg = [varg.Varg(1400,580,140, 80)]
-        self.jarv = [jarv.Jarv(3800,580, 140, 80)]
+        self.varg = [varg.Varg(1400,580,140, 80),varg.Varg(6800,580,140, 80)]
+        self.jarv = [jarv.Jarv(3800,580, 140, 80),jarv.Jarv(8500,580, 140, 80)]
 
 
         self.prevent_movement = 0
