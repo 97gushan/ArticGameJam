@@ -29,7 +29,8 @@ class Jarv:
         self.image = pygame.transform.scale(self.image,(self.width, self.height))
         self.image_rect= (self.xpos - self.world_x, self.ypos, self.width, self.height)
 
-        screen.blit(self.image, self.image_rect)
+        if self.xpos > 100:
+            screen.blit(self.image, self.image_rect)
 
     def update(self, world_x, dt):
         self.world_x = world_x

@@ -25,8 +25,6 @@ class Varg:
 
     def render(self, screen):
         self.image_rect= (self.xpos - self.world_x, self.ypos, self.width, self.height)
-        print(self.bool1)
-
         if self.bool1:
             self.image = pygame.transform.scale(self.image,(self.width, self.height))
             screen.blit(self.image, self.image_rect)
