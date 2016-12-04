@@ -4,7 +4,7 @@ import sys, pygame
 import game
 pygame.init()
 
-size = width, height = 1000, 700
+size = width, height = 1366, 768
 
 screen = pygame.display.set_mode(size)
 
@@ -15,7 +15,7 @@ game = game.Game()
 delta_time = 0
 clock = pygame.time.Clock()
 
-t = pygame.Surface((1000,700))
+t = pygame.Surface((width,height))
 t.set_alpha(100)
 t.fill((0,0,0))
 
