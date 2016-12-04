@@ -1,4 +1,5 @@
-import pygame, player, ground, varg, lo, jarv, bjorn
+import pygame, player, ground, varg, lo, jarv, bjorn, snow
+from time import clock
 
 class Game:
     def __init__(self):
@@ -27,7 +28,14 @@ class Game:
 
         self.prevent_movement = 0
 
+        self.victory = False
+        self.victory_img = pygame.image.load("img/winwin.png")
+        self.victory_rect = self.victory_img.get_rect()
 
+        self.hit_time = 0
+        self.current_time = 0
+
+        self.snow = snow.Snow()
 
 
 
@@ -104,15 +112,18 @@ class Game:
 
 
         # bear collisions
+        self.current_time = clock()
 
-        if self.player.get_rect()[1].colliderect(self.bjorn.get_rect()):
+        if self.player.get_rect()[1].colliderect(self.bjorn.get_rect()) and self.current_time - self.hit_time >= 0.1:
             self.player.set_grounded(True)
             self.player.jump(dt)
             self.player.set_grounded(False)
             self.bear_health -= 1
+            self.hit_time = clock()
 
             if(self.bear_health == 0):
                 print("CONGRATIOPSNAIONS!!!!")
+                self.victory = True
 
         elif(self.player.get_rect()[0].colliderect(self.bjorn.get_rect()) or
             self.player.get_rect()[2].colliderect(self.bjorn.get_rect()) or
@@ -145,8 +156,9 @@ class Game:
         if(self.world_x >= self.boss_position):
             self.boss_battle = True
 
+        self.snow.update(dt)
 
-
+        
     def render(self, screen):
         self.player.render(screen)
 
@@ -164,7 +176,10 @@ class Game:
 
         self.bjorn.render(screen)
 
+        if(self.victory):
+            screen.blit(self.victory_img, self.victory_rect)
 
+        self.snow.render(screen)
     def input(self, dt):
         """ User input thingys"""
 
