@@ -1,4 +1,4 @@
-import pygame, player, ground, varg, lo, jarv, bjorn
+import pygame, player, ground, varg, lo, jarv, bjorn, snow
 from time import clock
 
 class Game:
@@ -34,6 +34,8 @@ class Game:
 
         self.hit_time = 0
         self.current_time = 0
+
+        self.snow = snow.Snow()
 
 
 
@@ -154,8 +156,9 @@ class Game:
         if(self.world_x >= self.boss_position):
             self.boss_battle = True
 
+        self.snow.update(dt)
 
-
+        
     def render(self, screen):
         self.player.render(screen)
 
@@ -176,7 +179,7 @@ class Game:
         if(self.victory):
             screen.blit(self.victory_img, self.victory_rect)
 
-
+        self.snow.render(screen)
     def input(self, dt):
         """ User input thingys"""
 
