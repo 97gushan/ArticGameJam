@@ -42,7 +42,7 @@ class Player:
         self.image_rect.center = (self.xpos-24,self.ypos-36)
 
         self.upper_box = (self.xpos-30, self.ypos-52, 62, 6)
-        self.lower_box = (self.xpos-32, self.ypos+54, 68, 18)
+        self.lower_box = (self.xpos-28, self.ypos+54, 58, 18)
         self.left_box = (self.xpos-42, self.ypos -52, 8, 104)
         self.right_box = (self.xpos + 37, self.ypos - 52, 8, 106)
 
