@@ -63,10 +63,7 @@ class Player:
         self.image_L2 = pygame.transform.scale(self.image_L2,(64, 104))
         self.image_J = pygame.transform.scale(self.image_J,(64, 104))
 
-        pygame.draw.rect(screen, (0,255,255),self.upper_box, 2)
-        pygame.draw.rect(screen, (0,255,255),self.lower_box, 2)
-        pygame.draw.rect(screen, (0,255,0),self.left_box, 2)
-        pygame.draw.rect(screen, (0,255,0),self.right_box, 2)
+
 
 
     def update(self, dt):
