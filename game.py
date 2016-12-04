@@ -75,7 +75,7 @@ class Game:
 
 
     def die(self):
-        self.world_x = 0
+        #self.world_x = 0
 
         for n in self.jarv:
             n.reset()
@@ -84,7 +84,7 @@ class Game:
         for n in self.varg:
             n.reset()
 
-        self.player.reset()
+        #self.player.reset()
         self.boss_battle = False
         self.bjorn.reset()
         self.bear_health = 3
@@ -243,7 +243,7 @@ class Game:
             self.player.set_moving(-1)
         if(key[pygame.K_d]):
             if(self.boss_battle):
-                if(not self.prevent_movement == 2 and self.player.get_xpos() + self.world_x + 25 < self.boss_position + 1000):
+                if(not self.prevent_movement == 2 and self.player.get_xpos() + self.world_x + 25 < self.boss_position + 1366):
                     self.player.move_right(dt)
 
             elif(not self.prevent_movement == 2):
