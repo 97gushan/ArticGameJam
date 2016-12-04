@@ -1,4 +1,5 @@
 import pygame, player, ground, varg, lo, jarv, bjorn
+from time import clock
 
 class Game:
     def __init__(self):
@@ -27,7 +28,12 @@ class Game:
 
         self.prevent_movement = 0
 
+        self.victory = False
+        self.victory_img = pygame.image.load("img/winwin.png")
+        self.victory_rect = self.victory_img.get_rect()
 
+        self.hit_time = 0
+        self.current_time = 0
 
 
 
@@ -104,15 +110,18 @@ class Game:
 
 
         # bear collisions
+        self.current_time = clock()
 
-        if self.player.get_rect()[1].colliderect(self.bjorn.get_rect()):
+        if self.player.get_rect()[1].colliderect(self.bjorn.get_rect()) and self.current_time - self.hit_time >= 0.1:
             self.player.set_grounded(True)
             self.player.jump(dt)
             self.player.set_grounded(False)
             self.bear_health -= 1
+            self.hit_time = clock()
 
             if(self.bear_health == 0):
                 print("CONGRATIOPSNAIONS!!!!")
+                self.victory = True
 
         elif(self.player.get_rect()[0].colliderect(self.bjorn.get_rect()) or
             self.player.get_rect()[2].colliderect(self.bjorn.get_rect()) or
@@ -163,6 +172,9 @@ class Game:
             n.render(screen)
 
         self.bjorn.render(screen)
+
+        if(self.victory):
+            screen.blit(self.victory_img, self.victory_rect)
 
 
     def input(self, dt):
