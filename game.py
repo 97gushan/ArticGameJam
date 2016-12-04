@@ -29,7 +29,8 @@ class Game:
                     #bossplatforms
                        ground.Ground(self.boss_position+100, 450, 200, 50),
                        ground.Ground(self.boss_position+700, 450, 200, 50),
-                       ground.Ground(self.boss_position+400, 250, 200, 50)]
+                       ground.Ground(self.boss_position+400, 250, 200, 50),
+                       ground.Ground(self.boss_position+1000, 250, 200, 50)]
 
         for n in range(0,100):
             self.ground.append(ground.Ground(200*n,650,200, 50))
@@ -75,7 +76,7 @@ class Game:
 
 
     def die(self):
-        #self.world_x = 0
+        self.world_x = 0
 
         for n in self.jarv:
             n.reset()
@@ -84,7 +85,7 @@ class Game:
         for n in self.varg:
             n.reset()
 
-        #self.player.reset()
+        self.player.reset()
         self.boss_battle = False
         self.bjorn.reset()
         self.bear_health = 3
