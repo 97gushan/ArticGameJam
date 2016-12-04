@@ -3,7 +3,7 @@ from time import clock
 
 class Game:
     def __init__(self):
-        self.world_x = 5500
+        self.world_x = 0
         self.player = player.Player(500,590)
 
         self.boss_position = 10000
@@ -70,12 +70,12 @@ class Game:
         self.current_time = 0
         self.world_speed = 0.3
 
-        #self.snow = snow.Snow()
+        self.snow = snow.Snow()
 
 
 
     def die(self):
-        #self.world_x = 0
+        self.world_x = 0
 
         for n in self.jarv:
             n.reset()
@@ -84,7 +84,7 @@ class Game:
         for n in self.varg:
             n.reset()
 
-        #self.player.reset()
+        self.player.reset()
         self.boss_battle = False
         self.bjorn.reset()
         self.bear_health = 3
@@ -200,7 +200,7 @@ class Game:
         if(self.world_x >= self.boss_position):
             self.boss_battle = True
 
-        #self.snow.update(dt)
+        self.snow.update(dt)
 
 
     def render(self, screen):
@@ -223,7 +223,7 @@ class Game:
         if(self.victory):
             screen.blit(self.victory_img, self.victory_rect)
 
-        #self.snow.render(screen)
+        self.snow.render(screen)
     def input(self, dt):
         """ User input thingys"""
 
