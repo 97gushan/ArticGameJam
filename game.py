@@ -59,7 +59,7 @@ class Game:
         self.bear_health = 3
 
         self.varg = [varg.Varg(1400,580,140, 80),varg.Varg(6800,580,140, 80)]
-        self.jarv = [jarv.Jarv(3800,580, 140, 80),jarv.Jarv(8500,580, 140, 80)]
+        self.jarv = [jarv.Jarv(3800,570, 140, 80),jarv.Jarv(8500,580, 140, 80)]
 
 
         self.prevent_movement = 0
