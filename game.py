@@ -81,12 +81,15 @@ class Game:
         left_collision = False
         right_collision = False
 
+        ground = -1
+
         for n in self.ground:
             if(self.player.get_rect()[0].colliderect(n.get_rect())):
                 roof_collision = True
 
             if(self.player.get_rect()[1].colliderect(n.get_rect())):
                 ground_collision = True
+                ground = n
 
             if(self.player.get_rect()[2].colliderect(n.get_rect())):
                 left_collision = True
@@ -99,10 +102,12 @@ class Game:
         if(roof_collision):
             self.player.set_speed(0.1)
 
-        if(ground_collision):
+        if(ground_collision and not self.player.get_grounded()):
             self.player.set_grounded(True)
             self.player.set_speed(0)
-        else:
+            self.player.set_ypos(ground.get_ypos())
+
+        elif(not ground_collision and self.player.get_grounded()):
             self.player.set_grounded(False)
 
         if(left_collision):

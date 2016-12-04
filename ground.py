@@ -24,3 +24,12 @@ class Ground:
 
     def get_rect(self):
         return self.image_rect
+
+    def get_ypos(self):
+        return self.ypos
+
+    def get_xpos(self):
+        return self.xpos
+
+    def get_width(self):
+        return self.width
