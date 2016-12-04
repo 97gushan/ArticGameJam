@@ -226,7 +226,7 @@ class Game:
         if(self.victory):
             screen.blit(self.victory_img, self.victory_rect)
 
-        #self.snow.render(screen)
+        self.snow.render(screen)
 
     def input(self, dt):
         """ User input thingys"""
