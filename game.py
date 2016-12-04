@@ -17,7 +17,8 @@ class Game:
         ground.Ground(200,450, 200, 50),
         ground.Ground(400,250, 200, 50),
         ground.Ground(800,450, 200, 50),
-        ground.Ground(200*11-20,500, 200, 50),
+        ground.Ground(200*11-150,500, 200, 50),
+        ground.Ground(4000,450, 200, 50),
 
                     #bossplatforms
                        ground.Ground(self.boss_position+100, 450, 200, 50),
@@ -34,7 +35,7 @@ class Game:
         self.ground.pop(len(self.ground)-89)
 
 
-        #self.jarv = [jarv.Jarv(1400,520, 140, 80)]
+
         self.lo = [lo.Lo(600,580,140, 80)]
         self.bjorn = bjorn.Bjorn(16000, 410,140, 80, self.boss_position)
 
@@ -42,7 +43,7 @@ class Game:
         self.bear_health = 3
 
         self.varg = [varg.Varg(1400,580,140, 80)]
-        self.jarv = []
+        self.jarv = [jarv.Jarv(3800,580, 140, 80)]
 
 
         self.prevent_movement = 0
