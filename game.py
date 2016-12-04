@@ -1,5 +1,6 @@
 import pygame, player, ground, varg, lo, jarv, bjorn, snow
 from time import clock
+import sys
 
 class Game:
     def __init__(self):
@@ -257,3 +258,6 @@ class Game:
 
         if(not key[pygame.K_d] and not key[pygame.K_a]):
             self.player.set_moving(0)
+
+        if(key[pygame.K_ESCAPE]):
+            sys.exit()

@@ -7,6 +7,7 @@ pygame.init()
 size = width, height = 1366, 768
 
 screen = pygame.display.set_mode(size)
+pygame.display.toggle_fullscreen()
 
 black = 255,255,0
 
@@ -16,7 +17,7 @@ delta_time = 0
 clock = pygame.time.Clock()
 
 t = pygame.Surface((width,height))
-t.set_alpha(100)
+t.set_alpha(180)
 t.fill((0,0,0))
 
 image = pygame.image.load("img/miljo.png")
