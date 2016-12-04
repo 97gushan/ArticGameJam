@@ -42,9 +42,9 @@ class Player:
         self.image_rect.center = (self.xpos-24,self.ypos-36)
 
         self.upper_box = (self.xpos-30, self.ypos-52, 62, 6)
-        self.lower_box = (self.xpos-30, self.ypos+54, 62, 8)
-        self.left_box = (self.xpos-40, self.ypos -52, 6, 104)
-        self.right_box = (self.xpos + 37, self.ypos - 52, 6, 106)
+        self.lower_box = (self.xpos-28, self.ypos+54, 58, 18)
+        self.left_box = (self.xpos-42, self.ypos -52, 8, 104)
+        self.right_box = (self.xpos + 37, self.ypos - 52, 8, 106)
 
     def gravity(self, dt):
 
@@ -54,7 +54,7 @@ class Player:
 
     def jump(self, dt):
         if(self.is_grounded):
-            self.ypos -= 5
+            self.ypos -= 10
             self.speed_y = -1.5
 
     def move_left(self, dt):
